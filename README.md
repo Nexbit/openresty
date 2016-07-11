@@ -10,7 +10,7 @@ The debian version is the result of a merge between [ficusio/openresty](https://
 
 The first one is [Alpine linux](https://hub.docker.com/_/alpine/)-based `nexbit/openresty:alpine`. Its virtual size is just 31MB, yet it contains a fully functional [OpenResty](http://openresty.org) bundle v1.9.15.1 and [`apk` package manager](http://wiki.alpinelinux.org/wiki/Alpine_Linux_package_management), which allows you to easily install [lots of  pre-built packages](https://pkgs.alpinelinux.org/packages).
 
-The other flavor is `nexbit/openresty:latest`. It is based on `debian:jessie` and even if much bigger in size, it is a full fledged OpenResty 1.9.15.1 installation with custom compiled OpenSSL 1.0.2h, PCRE 8.38, and LuaRocks 2.3.0.
+The other flavor is `nexbit/openresty`, and it is the recommended variant. It is based on `debian:jessie` and even if much bigger in size, it is a full fledged OpenResty 1.9.15.1 installation with custom compiled OpenSSL 1.0.2h, PCRE 8.38, and LuaRocks 2.3.0.
 
 ### Paths & config
 
@@ -34,7 +34,7 @@ See [this PR](https://github.com/ficusio/openresty/pull/7) for background.
 
 ### `ONBUILD` variant
 
-The `*:onbuild` image variant uses [`ONBUILD` hook](http://docs.docker.com/engine/reference/builder/#onbuild) that automatically copies all files and subdirectories from the `nginx/` directory located at the root of Docker build context (i.e. next to your `Dockerfile`) into `/opt/openresty/nginx/`. The minimal configuration needed to get NginX running is the following:
+The `*:onbuild` image variants use [`ONBUILD` hooks](http://docs.docker.com/engine/reference/builder/#onbuild) that automatically copies all files and subdirectories from the `nginx/` directory located at the root of Docker build context (i.e. next to your `Dockerfile`) into `/opt/openresty/nginx/`. The minimal configuration needed to get NginX running is the following:
 
 ```coffee
 project_root/
@@ -51,7 +51,7 @@ FROM nexbit/openresty
 EXPOSE 8080
 ```
 
-Check [the sample application](https://github.com/ficusio/openresty/tree/master/_example) for more useful example.
+Check [the sample application](https://github.com/nexbit/openresty/tree/master/_example) for more useful example.
 
 ### Command-line parameters
 
