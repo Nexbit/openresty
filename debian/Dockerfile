@@ -1,10 +1,6 @@
-FROM debian:wheezy
+FROM debian:jessie
 
-RUN apt-get update \
- && apt-get install -y --no-install-recommends \
-    curl perl make build-essential procps \
-    libreadline-dev libncurses5-dev libpcre3-dev libssl-dev \
- && rm -rf /var/lib/apt/lists/*
+MAINTAINER Paolo Furini <p.furini@nexbit.it>
 
 ENV OPENRESTY_VERSION 1.9.7.3
 ENV OPENRESTY_PREFIX /opt/openresty
