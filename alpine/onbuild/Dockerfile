@@ -1,4 +1,4 @@
-FROM nexbit/openresty
+FROM nexbit/openresty-alpine
 
 MAINTAINER Paolo Furini <p.furini@nexbit.it>
 
