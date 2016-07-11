@@ -1,6 +1,8 @@
 FROM alpine:3.3
 
-ENV OPENRESTY_VERSION 1.9.7.3
+MAINTAINER Paolo Furini <p.furini@nexbit.it>
+
+ENV OPENRESTY_VERSION 1.9.15.1
 ENV OPENRESTY_PREFIX /opt/openresty
 ENV NGINX_PREFIX /opt/openresty/nginx
 ENV VAR_PREFIX /var/nginx
@@ -34,6 +36,7 @@ RUN echo "==> Installing dependencies..." \
     --with-pcre-jit \
     --with-ipv6 \
     --with-http_ssl_module \
+    --with-http_v2_module \
     --without-http_ssi_module \
     --without-http_userid_module \
     --without-http_uwsgi_module \
@@ -56,8 +59,4 @@ RUN echo "==> Installing dependencies..." \
  && rm -rf /root/ngx_openresty
 
 WORKDIR $NGINX_PREFIX/
-
-ONBUILD RUN rm -rf conf/* html/*
-ONBUILD COPY nginx $NGINX_PREFIX/
-
-CMD ["nginx", "-g", "daemon off; error_log /dev/stderr info;"]
+ENTRYPOINT ["nginx", "-g", "daemon off; error_log /dev/stderr error;"]
