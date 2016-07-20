@@ -116,8 +116,6 @@ RUN \
         openresty-${RESTY_VERSION}.tar.gz openresty-${RESTY_VERSION} \
         pcre-${RESTY_PCRE_VERSION}.tar.gz pcre-${RESTY_PCRE_VERSION} \
     && rm -rf luarocks-${RESTY_LUAROCKS_VERSION} luarocks-${RESTY_LUAROCKS_VERSION}.tar.gz \
-    && DEBIAN_FRONTEND=noninteractive apt-get autoremove -y \
-    && rm -rf /var/lib/apt/lists/* \
 #    && ln -sf /dev/stdout /usr/local/openresty/nginx/logs/access.log \
 #    && ln -sf /dev/stderr /usr/local/openresty/nginx/logs/error.log \
     && ln -sf $NGINX_PREFIX/sbin/nginx /usr/local/bin/nginx \
