@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM buildpack-deps:jessie
 
 MAINTAINER Paolo Furini <p.furini@nexbit.it>
 
@@ -9,8 +9,8 @@ ENV VAR_PREFIX /var/nginx
 ENV LUAROCKS_BIN $OPENRESTY_PREFIX/luajit/bin
 
 ARG RESTY_VERSION="1.9.15.1"
-ARG RESTY_LUAROCKS_VERSION="2.3.0"
-ARG RESTY_OPENSSL_VERSION="1.0.2h"
+ARG RESTY_LUAROCKS_VERSION="2.4.1"
+ARG RESTY_OPENSSL_VERSION="1.0.2j"
 ARG RESTY_PCRE_VERSION="8.38"
 ARG RESTY_CONFIG_OPTIONS="\
     --with-luajit \
@@ -49,22 +49,16 @@ RUN \
     echo "==> Installing dependences (apt)..." \
     && DEBIAN_FRONTEND=noninteractive apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-        build-essential \
-        ca-certificates \
-        curl \
+#        build-essential \
 #        libgd-dev \
 # Only for http_geoip_module
 #        libgeoip-dev \
-        libncurses5-dev \
+#        libncurses5-dev \
         libperl-dev \
-        libreadline-dev \
 # Only for http_xslt_module
 #        libxslt1-dev \ 
-        make \
         perl \
         unzip \
-        zlib1g-dev \
-        git \
     && cd /tmp \
     && echo "==> Downloading OpenSSL (${RESTY_OPENSSL_VERSION})..." \
     && curl -fSL https://www.openssl.org/source/openssl-${RESTY_OPENSSL_VERSION}.tar.gz -o openssl-${RESTY_OPENSSL_VERSION}.tar.gz \
